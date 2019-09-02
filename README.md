@@ -10,6 +10,8 @@ Features:
 
 :rocket: Automatically detect certain args in CI (owner, repo, issue_number)
 
+![Example showing fuzzy searching for an emoji](./example.gif)
+
 ## Installation
 
 You can either install `octokit-cli` to your project:
