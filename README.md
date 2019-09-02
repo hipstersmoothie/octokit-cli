@@ -4,6 +4,12 @@ A cli for [@octokit/rest](https://octokit.github.io/rest.js/).
 
 > NOTE: This a WIP side-project. If you want to see this project do something it doesn't feel free to contribute! Currently the descriptions could use some work.
 
+Features:
+
+:rocket: Run any octokit endpoint from the CLI
+
+:rocket: Automatically detect certain args in CI (owner, repo, issue_number)
+
 ## Installation
 
 You can either install `octokit-cli` to your project:
