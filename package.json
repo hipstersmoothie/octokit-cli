@@ -1,6 +1,6 @@
 {
   "name": "octokit-cli",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "main": "dist/index.js",
   "module": "dist/octokit-cli.esm.js",
   "typings": "dist/index.d.ts",
