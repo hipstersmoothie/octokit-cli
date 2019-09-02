@@ -1,0 +1,69 @@
+{
+  "name": "octokit-cli",
+  "version": "0.1.0",
+  "main": "dist/index.js",
+  "module": "dist/octokit-cli.esm.js",
+  "typings": "dist/index.d.ts",
+  "license": "MIT",
+  "repository": "hipstersmoothie/octokit-cli",
+  "author": "Andrew Lisowski <lisowski54@gmail.com>",
+  "files": [
+    "dist"
+  ],
+  "bin": {
+    "octokit": "./bin/octokit.js"
+  },
+  "scripts": {
+    "start": "tsdx watch",
+    "build": "tsdx build",
+    "test": "tsdx test",
+    "lint": "eslint src --ext .ts,.js",
+    "release": "auto shipit"
+  },
+  "devDependencies": {
+    "@types/dotenv": "^6.1.1",
+    "@types/env-ci": "^3.1.0",
+    "@types/got": "^9.6.7",
+    "@types/jest": "^24.0.18",
+    "auto": "^7.4.0",
+    "babel-eslint": "^10.0.3",
+    "eslint": "^6.3.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-config-xo": "^0.26.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-jsdoc": "^15.9.1",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "husky": "^3.0.5",
+    "prettier": "^1.18.2",
+    "pretty-quick": "^1.11.1",
+    "tsdx": "^0.9.0",
+    "tslib": "^1.10.0",
+    "typescript": "^3.6.2"
+  },
+  "dependencies": {
+    "@octokit/rest": "^16.28.7",
+    "@octokit/routes": "^20.9.2",
+    "change-case": "^3.1.0",
+    "command-line-application": "^0.8.0",
+    "dotenv": "^8.1.0",
+    "env-ci": "^4.1.1",
+    "terminal-link": "^2.0.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged"
+    }
+  },
+  "prettier": {
+    "printWidth": 80,
+    "semi": true,
+    "singleQuote": true,
+    "trailingComma": "es5"
+  },
+  "auto": {
+    "plugins": [
+      "npm",
+      "released"
+    ]
+  }
+}
