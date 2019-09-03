@@ -26,7 +26,8 @@
     "@types/env-ci": "^3.1.0",
     "@types/got": "^9.6.7",
     "@types/jest": "^24.0.18",
-    "auto": "^7.4.0",
+    "auto": "7.4.3",
+    "auto-config-hipstersmoothie": "1.0.4",
     "babel-eslint": "^10.0.3",
     "eslint": "^6.3.0",
     "eslint-config-airbnb-base": "^14.0.0",
@@ -47,8 +48,8 @@
     "command-line-application": "^0.8.0",
     "dotenv": "^8.1.0",
     "env-ci": "^4.1.1",
-    "tslib": "^1.10.0",
-    "terminal-link": "^2.0.0"
+    "terminal-link": "^2.0.0",
+    "tslib": "^1.10.0"
   },
   "husky": {
     "hooks": {
@@ -62,9 +63,6 @@
     "trailingComma": "es5"
   },
   "auto": {
-    "plugins": [
-      "npm",
-      "released"
-    ]
+    "extends": "hipstersmoothie"
   }
 }
