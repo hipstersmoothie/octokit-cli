@@ -964,10 +964,10 @@
     universal-user-agent "^3.0.0"
     url-template "^2.0.8"
 
-"@octokit/routes@^20.9.2":
-  version "20.9.2"
-  resolved "https://registry.yarnpkg.com/@octokit/routes/-/routes-20.9.2.tgz#1d4c223bf6e0f7724a161917c032be638b7ab78d"
-  integrity sha512-AYGWyMBVNblOGboowdGWRXwbtYG27FR4J3i7cVyLX803t8nb/4urTJxVUGKCLtCbEKwHuabUbCPUUJc7ZgthnQ==
+"@octokit/routes@^24.0.0":
+  version "24.0.0"
+  resolved "https://registry.yarnpkg.com/@octokit/routes/-/routes-24.0.0.tgz#ec4f47cf46b0ab0c5605e9b51bf56818c757102c"
+  integrity sha512-2dF5Th/w2zRZdlQAQIFJqHFnT18FX2BBylvbjmUmP3/fIWwDMlaaCUC6SXHVwdAwm7235WdimSBxEc8jbHNIEQ==
 
 "@types/babel__core@^7.1.0":
   version "7.1.2"
