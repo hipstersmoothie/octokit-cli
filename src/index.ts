@@ -1,11 +1,80 @@
 import Octokit from '@octokit/rest';
-import routes from '@octokit/routes/api.github.com.json';
+import GitHubApi from '@octokit/routes/api.github.com.json';
 import changeCase from 'change-case';
 import { app, Command, Option, MultiCommand } from 'command-line-application';
 import dotenv from 'dotenv';
 import envCi from 'env-ci';
 
 import formatters from './formatters';
+
+interface Param {
+  name: string;
+  type: string;
+  description: string;
+  required?: boolean;
+}
+
+interface Api {
+  paths: Record<
+    string,
+    Record<
+      string,
+      {
+        operationId: string;
+        description: string;
+        parameters: Param[];
+        requestBody?: {
+          content: {
+            'application/json': {
+              schema: { properties: Param[]; required: string[] };
+            };
+          };
+        };
+      }
+    >
+  >;
+}
+
+const routes = Object.values((GitHubApi as Api).paths).reduce(
+  (acc, path) => {
+    Object.values(path).forEach(route => {
+      const [apiName, method] = route.operationId.split('/');
+      const methodDef = {
+        ...route,
+        idName: method,
+        parameters: [...route.parameters].filter(p => p.name !== 'accept'),
+      };
+
+      if (
+        route.requestBody &&
+        route.requestBody.content['application/json'].schema.properties
+      ) {
+        const required =
+          route.requestBody.content['application/json'].schema.required || [];
+
+        methodDef.parameters = [
+          ...methodDef.parameters,
+          ...Object.entries(
+            route.requestBody.content['application/json'].schema.properties
+          ).map(([name, def]) => ({
+            name,
+            ...def,
+            required: required.includes(name),
+          })),
+        ];
+      }
+
+      if (acc[apiName]) {
+        acc[apiName].push(methodDef);
+      } else {
+        acc[apiName] = [methodDef];
+      }
+    });
+
+    return acc;
+  },
+  {} as Record<string, Method[]>
+);
 
 const { isCi, ...env } = envCi();
 const slug = 'slug' in env ? env.slug : '';
@@ -14,7 +83,7 @@ const [owner, repo] = slug.split('/');
 
 type ApiName = keyof typeof routes;
 
-interface MethodParam {
+interface Param {
   name: string;
   type: string;
   description: string;
@@ -24,7 +93,7 @@ interface MethodParam {
 interface Method {
   idName: string;
   description: string;
-  params: MethodParam[];
+  parameters: Param[];
 }
 
 /** Convert the string based type to a javascript Type */
@@ -47,7 +116,7 @@ function createType(type: string) {
 const optionParamsInCI = ['owner', 'repo', 'issue_number'];
 
 /** Create a command-line-application Option from the param */
-function createOption(param: MethodParam): Option {
+function createOption(param: Param): Option {
   return {
     name: param.name,
     type: createType(param.type),
@@ -59,7 +128,7 @@ function createOption(param: MethodParam): Option {
 
 /** Create a command-line-application Command from the method */
 function createCommand(method: Method, truncateDescriptions: boolean): Command {
-  const requiredParams = method.params
+  const requiredParams = method.parameters
     .filter(({ name, required }) =>
       isCi && optionParamsInCI.includes(name) ? false : required
     )
@@ -67,7 +136,7 @@ function createCommand(method: Method, truncateDescriptions: boolean): Command {
 
   return {
     name: method.idName,
-    options: method.params.map(createOption),
+    options: method.parameters.map(createOption),
     require: requiredParams,
     description: truncateDescriptions
       ? method.description.slice(0, method.description.indexOf('.'))
@@ -146,14 +215,18 @@ export default async () => {
     auth: process.env.GH_TOKEN,
   });
 
-  // @ts-ignore
-  const response = await octokit[api][changeCase.camelCase(method)]({
-    owner,
-    repo,
-    issue_number: prNumber,
-    ...args,
-  });
+  try {
+    // @ts-ignore
+    const response = await octokit[api][changeCase.camelCase(method)]({
+      owner,
+      repo,
+      issue_number: prNumber,
+      ...args,
+    });
 
-  // eslint-disable-next-line no-console
-  console.log(await formatResponse(api, method, response));
+    // eslint-disable-next-line no-console
+    console.log(await formatResponse(api, method, response));
+  } catch (error) {
+    console.log(error);
+  }
 };
