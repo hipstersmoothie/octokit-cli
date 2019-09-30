@@ -1,5 +1,5 @@
 import Octokit from '@octokit/rest';
-import routes from '@octokit/routes';
+import routes from '@octokit/routes/api.github.com.json';
 import changeCase from 'change-case';
 import { app, Command, Option, MultiCommand } from 'command-line-application';
 import dotenv from 'dotenv';
