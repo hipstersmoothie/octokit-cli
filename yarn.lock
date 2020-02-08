@@ -982,10 +982,10 @@
     universal-user-agent "^3.0.0"
     url-template "^2.0.8"
 
-"@octokit/routes@^25.0.0":
-  version "25.0.0"
-  resolved "https://registry.yarnpkg.com/@octokit/routes/-/routes-25.0.0.tgz#3829c3861416732656d6cc670cfcb4ea05655998"
-  integrity sha512-dcVSGu1z8E2vVz9J/0u54diqChfsknk5y8qQgAkOQ75p+tSwX9/EJqkS+EMyeY97mYSzNDRIk42Li5ClZ6bpvg==
+"@octokit/routes@^27.0.0":
+  version "27.2.3"
+  resolved "https://registry.yarnpkg.com/@octokit/routes/-/routes-27.2.3.tgz#2a23f6b0b36d744de9702c1a84a744f3ba9fdd84"
+  integrity sha512-p7GKmOS1ELyo/HzoslsxD7ij1g7qZoWIGPU4g1Ngt4GT1PcW6FIZh573pbLhF8rZpKbDfCYJBOIS7Fr6MnTavg==
 
 "@types/babel__core@^7.1.0":
   version "7.1.2"
