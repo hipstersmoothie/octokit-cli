@@ -1052,10 +1052,10 @@
   resolved "https://registry.yarnpkg.com/@types/estree/-/estree-0.0.39.tgz#e177e699ee1b8c22d23174caaa7422644389509f"
   integrity sha512-EYNwp3bU+98cpU4lAWYYL7Zz+2gryWH1qbdDTidVd6hkiR6weksdbMadyXKXNPEkQFhXM+hVO9ZygomHXp+AIw==
 
-"@types/got@9.6.7":
-  version "9.6.7"
-  resolved "https://registry.yarnpkg.com/@types/got/-/got-9.6.7.tgz#33d84c60cba83e3c904634a1ea7ea81d1549bea6"
-  integrity sha512-LMc2ja42bQorKpBxf38ZBPdT3FhYL0lyAqnZBo5vAPCtobYa8AiHwSLH5zDvR19r2Pr5Ojar3hT/QLLb2SoPYA==
+"@types/got@9.6.11":
+  version "9.6.11"
+  resolved "https://registry.yarnpkg.com/@types/got/-/got-9.6.11.tgz#482b402cc5ee459481aeeadb08142ebb1a9afb26"
+  integrity sha512-dr3IiDNg5TDesGyuwTrN77E1Cd7DCdmCFtEfSGqr83jMMtcwhf/SGPbN2goY4JUWQfvxwY56+e5tjfi+oXeSdA==
   dependencies:
     "@types/node" "*"
     "@types/tough-cookie" "*"
